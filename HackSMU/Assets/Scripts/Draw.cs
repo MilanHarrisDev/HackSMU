@@ -19,20 +19,25 @@ public class Draw : MonoBehaviour
     [SerializeField]
     private LayerMask drawingLayer;
 
-
     private Vector3 drawStartPos;
 
     private float drawTimer = 0f;
+
+    [SerializeField]
     private float drawTime = .1f;
     private bool canDraw = false;
 
     private void Update()
     {
-        drawTimer += Time.deltaTime;
-        if(drawTimer >= drawTime && !canDraw)
+        if (!canDraw)
         {
-            drawTimer = 0;
-            canDraw = true;
+            if (drawTimer >= drawTime)
+            {
+                drawTimer = 0;
+                canDraw = true;
+            }
+            else
+                drawTimer += Time.deltaTime;
         }
 
         bool drawPressed = false;
@@ -91,6 +96,8 @@ public class Draw : MonoBehaviour
                     currentLine.positionCount++;
 
                     currentLine.SetPositions(newPositions);
+
+                    canDraw = false;
                 }
             }
             else if (drawing)

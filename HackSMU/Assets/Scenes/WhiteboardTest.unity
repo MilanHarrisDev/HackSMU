@@ -292,6 +292,7 @@ MonoBehaviour:
   drawingLayer:
     serializedVersion: 2
     m_Bits: 512
+  drawTime: 0.1
 --- !u!4 &1474544722
 Transform:
   m_ObjectHideFlags: 0
