@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 114473201901389994}
   m_Layer: 0
   m_Name: PhotonNetworkUser
-  m_TagString: Untagged
+  m_TagString: NetworkPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1974589008120574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalPosition: {x: 0, y: -0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4851196352273456}
@@ -369,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035c04e8106885f4db9e01a9903b2932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 0}
 --- !u!114 &114679014643816790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,7 +452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035c04e8106885f4db9e01a9903b2932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 0}
 --- !u!114 &114883527468410332
 MonoBehaviour:
   m_ObjectHideFlags: 1

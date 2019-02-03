@@ -7,14 +7,13 @@ using UnityEngine;
 public class PhotonPlayer : MonoBehaviour {
 
     private PhotonView PV;
-    public Transform head;
 
 	// Use this for initialization
 	void Start () {
         PV = GetComponent<PhotonView>();
         if (PV.IsMine == true)
         {
-            head.rotation = Camera.main.transform.rotation;
+            transform.GetChild(0).gameObject.SetActive(false);
         }
 	}
 	

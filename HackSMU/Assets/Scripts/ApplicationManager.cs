@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
@@ -13,7 +14,7 @@ public enum Device
     OCULUS_GO
 }
 
-public class ApplicationManager : MonoBehaviour {
+public class ApplicationManager : MonoBehaviourPun {
 
     public Microphone mic;
 
@@ -23,6 +24,8 @@ public class ApplicationManager : MonoBehaviour {
 
     private UnityEvent currentButtonEvent;
     private Transform raycastTransform;
+
+    private GameObject networkedPlayer;
 
     public Ray OvrRay { get; private set; }
     public RaycastHit OvrHit;
@@ -45,14 +48,29 @@ public class ApplicationManager : MonoBehaviour {
             raycastTransform = GameObject.FindWithTag("OvrRaycastPoint").transform;
     }
 
+    private void GetNetworkedPlayer(){
+        GameObject[] players = GameObject.FindGameObjectsWithTag("NetworkPlayer");
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<PhotonView>().IsMine)
+                networkedPlayer = player;
+        }
+    }
+
     private void Update()
     {
+        MoveNetworkedPlayer();
+
         if (device == Device.OCULUS_GO)
         {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad))
             {
                 if (OvrHit.transform.gameObject.layer == LayerMask.NameToLayer("TeleportSurface"))
-                    GameObject.FindWithTag("Player").transform.position = new Vector3(OvrHit.point.x, 0, OvrHit.point.z);
+                {
+                    Transform cameraRig = GameObject.FindWithTag("Player").transform;
+                    cameraRig.position = new Vector3(OvrHit.point.x, 0, OvrHit.point.z);
+                    MoveNetworkedPlayer();
+                }
             }
 
             OvrRay = new Ray(raycastTransform.position, raycastTransform.forward);
@@ -78,5 +96,17 @@ public class ApplicationManager : MonoBehaviour {
                 raycastTransform.GetComponent<LineRenderer>().SetPosition(1, (raycastTransform.position + raycastTransform.forward) * 2);
             }
         }
+    }
+
+    public void MoveNetworkedPlayer(){
+        Transform cameraRig = GameObject.FindWithTag("Player").transform;
+
+        if (networkedPlayer == null)
+            GetNetworkedPlayer();
+
+        if (networkedPlayer == null)
+            return;
+
+        networkedPlayer.transform.position = new Vector3(cameraRig.position.x, networkedPlayer.transform.position.y, cameraRig.position.z);
     }
 }
