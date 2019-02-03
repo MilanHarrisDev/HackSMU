@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1434a4e336695247829b9ce681f921b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joinOnMasterServerConnect: 1
   myPlayer: {fileID: 0}
   joinButton: {fileID: 59770854}
 --- !u!4 &1092897354
@@ -437,7 +438,6 @@ MonoBehaviour:
   usePunSettings: 1
   enableSupportLogger: 0
   updateInterval: 50
-  runInBackground: 1
   statsResetInterval: 1000
   speakerPrefab: {fileID: 0}
   Settings:

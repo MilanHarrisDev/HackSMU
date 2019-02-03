@@ -10,7 +10,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks {
 
     public static PhotonLobby lobby;
 
-    public GameObject myPlayer;
+    public bool joinOnMasterServerConnect = false;
+
+    private GameObject myPlayer;
 
     public GameObject joinButton;
 
@@ -24,7 +26,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks {
     {
         base.OnConnectedToMaster();
         Debug.Log("Connected to Photon master servers.");
-        joinButton.SetActive(true);
+        //joinButton.SetActive(true);
+        if(joinOnMasterServerConnect)
+            OnjoinButtonClick();
     }
 
     public override void OnJoinedRoom()
