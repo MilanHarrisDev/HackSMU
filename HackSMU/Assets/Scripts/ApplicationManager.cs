@@ -63,15 +63,20 @@ public class ApplicationManager : MonoBehaviour {
 
                 raycastTransform.GetComponent<LineRenderer>().SetPosition(0, raycastTransform.position);
                 raycastTransform.GetComponent<LineRenderer>().SetPosition(1, OvrHit.point);
+                if (OVRInput.Get(OVRInput.Button.PrimaryTouchpad))
+                    currentButtonEvent.Invoke();
             }
             else
             {
                 raycastTransform.GetComponent<LineRenderer>().SetPosition(0, raycastTransform.position);
-                raycastTransform.GetComponent<LineRenderer>().SetPosition(1, (raycastTransform.position + raycastTransform.up) * 10);
+                raycastTransform.GetComponent<LineRenderer>().SetPosition(1, (raycastTransform.position + raycastTransform.forward) * 2);
             }
 
             if (OVRInput.Get(OVRInput.Button.PrimaryTouchpad))
-                currentButtonEvent.Invoke();
+            {
+                if (OvrHit.transform.gameObject.layer == LayerMask.NameToLayer("TeleportSurface"))
+                    GameObject.FindWithTag("Player").transform.position = new Vector3(OvrHit.point.x, 0, OvrHit.point.z);
+            }
         }
     }
 }
