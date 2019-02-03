@@ -4,10 +4,13 @@ using Photon.Chat;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class PhotonLobby : MonoBehaviourPunCallbacks {
 
     public static PhotonLobby lobby;
+
+    public GameObject myPlayer;
 
     public GameObject joinButton;
 
@@ -27,6 +30,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks {
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+        myPlayer = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkUser"), new Vector3(Random.Range(-3f,3f), 0, 0), Quaternion.identity);
         Debug.Log("Joined room.");
     }
 
