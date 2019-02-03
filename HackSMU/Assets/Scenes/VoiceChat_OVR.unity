@@ -802,7 +802,7 @@ MonoBehaviour:
   enableAdaptiveResolution: 0
   minRenderScale: 0.7
   maxRenderScale: 1
-  _trackingOriginType: 1
+  _trackingOriginType: 0
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
@@ -1010,7 +1010,7 @@ MonoBehaviour:
   device: 2
   ovrLayerMask:
     serializedVersion: 2
-    m_Bits: 544
+    m_Bits: 1568
 --- !u!4 &2032346448
 Transform:
   m_ObjectHideFlags: 0

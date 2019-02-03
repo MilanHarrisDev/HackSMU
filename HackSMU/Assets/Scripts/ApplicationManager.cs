@@ -49,6 +49,12 @@ public class ApplicationManager : MonoBehaviour {
     {
         if (device == Device.OCULUS_GO)
         {
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad))
+            {
+                if (OvrHit.transform.gameObject.layer == LayerMask.NameToLayer("TeleportSurface"))
+                    GameObject.FindWithTag("Player").transform.position = new Vector3(OvrHit.point.x, 0, OvrHit.point.z);
+            }
+
             OvrRay = new Ray(raycastTransform.position, raycastTransform.forward);
             if (Physics.Raycast(OvrRay, out OvrHit, 1000f, ovrLayerMask))
             {
@@ -70,12 +76,6 @@ public class ApplicationManager : MonoBehaviour {
             {
                 raycastTransform.GetComponent<LineRenderer>().SetPosition(0, raycastTransform.position);
                 raycastTransform.GetComponent<LineRenderer>().SetPosition(1, (raycastTransform.position + raycastTransform.forward) * 2);
-            }
-
-            if (OVRInput.Get(OVRInput.Button.PrimaryTouchpad))
-            {
-                if (OvrHit.transform.gameObject.layer == LayerMask.NameToLayer("TeleportSurface"))
-                    GameObject.FindWithTag("Player").transform.position = new Vector3(OvrHit.point.x, 0, OvrHit.point.z);
             }
         }
     }
