@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Photon.Pun;
 using UnityEngine;
 
 public class Draw : MonoBehaviour
@@ -14,6 +16,7 @@ public class Draw : MonoBehaviour
 
     [SerializeField]
     private Material[] lineColors;
+    private int lineColor;
     private Material lineMaterial;
 
     [SerializeField]
@@ -131,13 +134,20 @@ public class Draw : MonoBehaviour
 
     private void StopDraw(){
         drawing = false;
+
+        Vector3[] positions = new Vector3[currentLine.positionCount];
+        for (int i = 0; i < currentLine.positionCount; i++)
+            positions[i] = currentLine.GetPosition(i);
+
+        GameObject newDrawing = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "WhiteboardDrawingView"), Vector3.zero, Quaternion.identity, 0);
+        newDrawing.GetComponent<WhiteboardDrawingView>().Init(lineColor, positions);
+
         currentLine = null;
     }
 
     public void SetColor(int newColorIndex){
-
         Debug.Log("Line Color Changed to " + newColorIndex);
-
+        lineColor = newColorIndex;
         lineMaterial = lineColors[newColorIndex];
     }
 }

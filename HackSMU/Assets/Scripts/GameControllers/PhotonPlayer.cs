@@ -14,7 +14,6 @@ public class PhotonPlayer : MonoBehaviour {
         PV = GetComponent<PhotonView>();
         if (PV.IsMine == true)
         {
-            myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"), Vector3.zero, Quaternion.identity);
         }
 	}
 	
