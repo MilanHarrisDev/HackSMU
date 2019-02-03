@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/VoiceChat_Daydream.unity
-    guid: 85b072c965e8249d292c7543645664b6
+    path: Assets/Scenes/networking.unity
+    guid: dea1f31e2ac69a5478e1815fb39a35f8
