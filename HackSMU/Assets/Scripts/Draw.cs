@@ -47,7 +47,7 @@ public class Draw : MonoBehaviour
 
         bool drawPressed = false;
 
-        switch(ApplicationManager.device)
+        switch(ApplicationManager.manager.device)
         {
             case Device.MOUSE_DEBUG:
                 drawPressed = Input.GetMouseButton(0);
@@ -68,7 +68,7 @@ public class Draw : MonoBehaviour
         Camera cam = Camera.main;
         bool raycast = false;
 
-        switch (ApplicationManager.device)
+        switch (ApplicationManager.manager.device)
         {
             case Device.MOUSE_DEBUG:
                 Vector2 mousePos = Input.mousePosition;
