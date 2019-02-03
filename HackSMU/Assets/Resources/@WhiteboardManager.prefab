@@ -58,7 +58,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: efbca1b3d7f3b4bed823a9728754f014, type: 2}
   - {fileID: 2100000, guid: 6afa0472eea994403904d5a02c3c424a, type: 2}
   - {fileID: 2100000, guid: 6e1d24e600c8f4eb59cdca505f09a6a0, type: 2}
-  device: 1
   drawingLayer:
     serializedVersion: 2
     m_Bits: 512

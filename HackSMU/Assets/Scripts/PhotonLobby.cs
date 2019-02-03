@@ -31,7 +31,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks {
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        myPlayer = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkUser"), new Vector3(0, 0, 0), Quaternion.identity);
+        myPlayer = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkUser"), new Vector3(0, 0, 0), Quaternion.identity, 0);
         Debug.Log("Joined room.");
     }
 

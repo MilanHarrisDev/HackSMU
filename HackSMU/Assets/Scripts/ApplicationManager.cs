@@ -70,7 +70,7 @@ public class ApplicationManager : MonoBehaviour {
                 raycastTransform.GetComponent<LineRenderer>().SetPosition(1, (raycastTransform.position + raycastTransform.up) * 10);
             }
 
-            if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+            if (OVRInput.Get(OVRInput.Button.PrimaryTouchpad))
                 currentButtonEvent.Invoke();
         }
     }

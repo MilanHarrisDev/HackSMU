@@ -56,10 +56,10 @@ public class Draw : MonoBehaviour
                 drawPressed = Input.GetMouseButton(0);
                 break;
             case Device.DAYDREAM:
-                drawPressed = GvrControllerInput.GetDevice(GvrControllerHand.Right).GetButton(GvrControllerButton.TouchPadButton);
+                drawPressed = GvrControllerInput.GetDevice(GvrControllerHand.Dominant).GetButton(GvrControllerButton.TouchPadButton);
                 break;
             case Device.OCULUS_GO:
-                drawPressed = OVRInput.Get(OVRInput.Button.PrimaryHandTrigger);
+                drawPressed = OVRInput.Get(OVRInput.Button.PrimaryTouchpad);
                 break;
         }
 
@@ -86,15 +86,20 @@ public class Draw : MonoBehaviour
                 break;
             case Device.DAYDREAM:
                 if (GvrPointerInputModule.CurrentRaycastResult.gameObject == null)
+                {
                     raycast = false;
+                    break;
+                }
                 else if (GvrPointerInputModule.CurrentRaycastResult.gameObject.layer == LayerMask.NameToLayer("Drawing"))
                     raycast = true;
 
                 hit.point = GvrPointerInputModule.CurrentRaycastResult.worldPosition;
                 break;
             case Device.OCULUS_GO:
-                if (ApplicationManager.manager.OvrHit.collider == null)
+                if (ApplicationManager.manager.OvrHit.collider == null){
                     raycast = false;
+                    break;
+                }
                 else if (ApplicationManager.manager.OvrHit.transform.gameObject.layer == LayerMask.NameToLayer("Drawing"))
                     raycast = true;
 
