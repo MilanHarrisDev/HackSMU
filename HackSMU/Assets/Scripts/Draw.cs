@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Device{
-    MOUSE_DEBUG,
-    DAYDREAM,
-    OCULUS_GO
-}
-
 public class Draw : MonoBehaviour
 {
 
@@ -18,7 +12,9 @@ public class Draw : MonoBehaviour
     [SerializeField]
     private LineRenderer currentLine;
 
-    public Device device;
+    [SerializeField]
+    private Material[] lineColors;
+    private Material lineMaterial;
 
     [SerializeField]
     private LayerMask drawingLayer;
@@ -30,6 +26,11 @@ public class Draw : MonoBehaviour
     [SerializeField]
     private float drawTime = .1f;
     private bool canDraw = false;
+
+    private void Awake()
+    {
+        lineMaterial = lineColors[0];
+    }
 
     private void Update()
     {
@@ -46,7 +47,7 @@ public class Draw : MonoBehaviour
 
         bool drawPressed = false;
 
-        switch(device)
+        switch(ApplicationManager.device)
         {
             case Device.MOUSE_DEBUG:
                 drawPressed = Input.GetMouseButton(0);
@@ -67,7 +68,7 @@ public class Draw : MonoBehaviour
         Camera cam = Camera.main;
         bool raycast = false;
 
-        switch (device)
+        switch (ApplicationManager.device)
         {
             case Device.MOUSE_DEBUG:
                 Vector2 mousePos = Input.mousePosition;
@@ -101,6 +102,8 @@ public class Draw : MonoBehaviour
                 newDrawLine.transform.position = Vector3.zero;
                 currentLine = newDrawLine.GetComponent<LineRenderer>();
                 currentLine.SetPosition(0, drawStartPos);
+
+                currentLine.material = lineMaterial;
                 drawing = true;
             }
             else if (currentLine != null)
@@ -129,5 +132,12 @@ public class Draw : MonoBehaviour
     private void StopDraw(){
         drawing = false;
         currentLine = null;
+    }
+
+    public void SetColor(int newColorIndex){
+
+        Debug.Log("Line Color Changed to " + newColorIndex);
+
+        lineMaterial = lineColors[newColorIndex];
     }
 }
