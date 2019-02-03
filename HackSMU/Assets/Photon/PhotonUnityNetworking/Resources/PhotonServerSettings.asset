@@ -14,7 +14,7 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: c38b0b7a-1d75-441d-a1d3-1533711a48dd
     AppIdChat: 
-    AppIdVoice: 
+    AppIdVoice: 712519c0-e932-477a-98b1-25b8346a4db8
     AppVersion: 
     UseNameServer: 1
     FixedRegion: 
@@ -35,4 +35,4 @@ MonoBehaviour:
   - DestroyRpc
   - RPC_InitWhiteboardLine
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1

@@ -54,11 +54,11 @@ public class PhotonLobby : MonoBehaviourPunCallbacks {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if(ApplicationManager.manager.device == Device.MOUSE_DEBUG)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                OnjoinButtonClick();
-        }
-	}
+	//void Update () {
+    //    if(ApplicationManager.manager.device == Device.MOUSE_DEBUG)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.Space))
+    //            OnjoinButtonClick();
+    //    }
+	//}
 }
