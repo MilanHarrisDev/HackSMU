@@ -246,8 +246,8 @@ Camera:
   m_GameObject: {fileID: 358702056}
   m_Enabled: 0
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.4627451, g: 0.6784314, b: 0.7647059, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -699,8 +699,8 @@ Camera:
   m_GameObject: {fileID: 1568687148}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.4627451, g: 0.6784314, b: 0.7647059, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -910,8 +910,8 @@ Camera:
   m_GameObject: {fileID: 1795229447}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.4627451, g: 0.6784314, b: 0.7647059, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
