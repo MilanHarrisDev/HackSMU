@@ -22,16 +22,27 @@ namespace GoogleVR.PermissionsDemo
     using System.Collections.Generic;
     using UnityEngine.UI;
 
+
+
 #if UNITY_ANDROID || UNITY_EDITOR
     // Manages the permission flow in PermissionsDemo.
     public class PermissionsFlowManager : MonoBehaviour
     {
-        private static string[] permissionNames = { "android.permission.READ_EXTERNAL_STORAGE" };
+        private static string[] permissionNames = { "android.permission.RECORD_AUDIO" };
 
         public Text statusText;
 
         private static List<GvrPermissionsRequester.PermissionStatus> permissionList =
             new List<GvrPermissionsRequester.PermissionStatus>();
+
+        private void Start()
+        {
+            CheckPermission();
+        }
+
+        private void Update()
+        {
+        }
 
         public void CheckPermission()
         {
@@ -68,7 +79,7 @@ namespace GoogleVR.PermissionsDemo
                 Debug.Log("Permissions.RequestPermisions: Permission has not been previously granted");
                 if (permissionRequester.ShouldShowRational(permissionNames[0]))
                 {
-                    statusText.text = "This game needs to access external storage.  Please grant permission when prompted.";
+                    statusText.text = "This game needs to access the microphone.  Please grant permission when prompted.";
                     statusText.color = Color.red;
                 }
 
@@ -89,7 +100,7 @@ namespace GoogleVR.PermissionsDemo
             }
             else
             {
-                statusText.text = "ExternalStorage permission already granted!";
+                statusText.text = "Record_Audio permission already granted!";
             }
         }
     }

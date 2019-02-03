@@ -14,11 +14,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks {
 
     private GameObject myPlayer;
 
-    public GameObject joinButton;
-
     public void OnjoinButtonClick()
     {
-        joinButton.SetActive(false);
         PhotonNetwork.JoinRoom("interview");
     }
 
