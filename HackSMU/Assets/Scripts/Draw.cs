@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Device{
+    MOUSE_DEBUG,
+    DAYDREAM,
+    OCULUS_GO
+}
+
 public class Draw : MonoBehaviour
 {
 
-    public string[] drawButtons;
     private bool drawing = false;
 
     [SerializeField]
@@ -13,8 +18,7 @@ public class Draw : MonoBehaviour
     [SerializeField]
     private LineRenderer currentLine;
 
-    [SerializeField]
-    private bool mouseTest = false;
+    public Device device;
 
     [SerializeField]
     private LayerMask drawingLayer;
@@ -41,17 +45,16 @@ public class Draw : MonoBehaviour
         }
 
         bool drawPressed = false;
-        foreach (string str in drawButtons)
-        {
-            if (Input.GetButton(str))
-            {
-                drawPressed = true;
-                break;
-            }
-        }
 
-        if (mouseTest)
-            drawPressed = Input.GetMouseButton(0);
+        switch(device)
+        {
+            case Device.MOUSE_DEBUG:
+                drawPressed = Input.GetMouseButton(0);
+                break;
+            case Device.DAYDREAM:
+                drawPressed = GvrControllerInput.GetDevice(GvrControllerHand.Right).GetButton(GvrControllerButton.TouchPadButton);
+                break;
+        }
 
         if (drawPressed)
             TryDraw();
@@ -60,49 +63,67 @@ public class Draw : MonoBehaviour
     }
 
     private void TryDraw(){
-        if(mouseTest)
+        RaycastHit hit = new RaycastHit();
+        Camera cam = Camera.main;
+        bool raycast = false;
+
+        switch (device)
         {
-            RaycastHit hit;
-            Camera cam = Camera.main;
-            Vector2 mousePos = Input.mousePosition;
-            Ray mouseRay = cam.ScreenPointToRay(Input.mousePosition);
+            case Device.MOUSE_DEBUG:
+                Vector2 mousePos = Input.mousePosition;
+                Ray mouseRay = cam.ScreenPointToRay(Input.mousePosition);
 
-            bool raycast = Physics.Raycast(cam.transform.position, mouseRay.direction, out hit, 1000f, drawingLayer);
+                raycast = Physics.Raycast(cam.transform.position, mouseRay.direction, out hit, 1000f, drawingLayer);
 
-            Debug.DrawRay(cam.transform.position, mouseRay.direction, Color.red, 5);
+                Debug.DrawRay(cam.transform.position, mouseRay.direction, Color.red, 5);
+                break;
+            case Device.DAYDREAM:
+                if (GvrPointerInputModule.CurrentRaycastResult.gameObject == null)
+                    raycast = false;
+                else if (GvrPointerInputModule.CurrentRaycastResult.gameObject.layer == LayerMask.NameToLayer("Drawing"))
+                    raycast = true;
+                else
+                    raycast = false;
 
-            if (raycast)
-            {
-                if (!drawing)
-                {
-                    drawStartPos = hit.point;
-                    GameObject newDrawLine = Instantiate(drawLine, hit.transform);
-                    newDrawLine.transform.position = Vector3.zero;
-                    currentLine = newDrawLine.GetComponent<LineRenderer>();
-                    currentLine.SetPosition(0, drawStartPos);
-                    drawing = true;
-                }
-                else if (currentLine != null)
-                {
-                    if (!canDraw)
-                        return;
+                hit.point = GvrPointerInputModule.CurrentRaycastResult.worldPosition;
+                break;
+            case Device.OCULUS_GO:
 
-                    Vector3[] newPositions = new Vector3[currentLine.positionCount + 1];
-                    for (int i = 0; i < currentLine.positionCount; i++)
-                        newPositions[i] = currentLine.GetPosition(i);
-
-                    newPositions[currentLine.positionCount] = hit.point;
-
-                    currentLine.positionCount++;
-
-                    currentLine.SetPositions(newPositions);
-
-                    canDraw = false;
-                }
-            }
-            else if (drawing)
-                StopDraw();
+                break;
         }
+
+        if (raycast)
+        {
+            if (!drawing)
+            {
+                drawStartPos = hit.point;
+                GameObject newDrawLine = Instantiate(drawLine, hit.transform);
+                newDrawLine.transform.position = Vector3.zero;
+                currentLine = newDrawLine.GetComponent<LineRenderer>();
+                currentLine.SetPosition(0, drawStartPos);
+                drawing = true;
+            }
+            else if (currentLine != null)
+            {
+                if (!canDraw)
+                    return;
+
+                Vector3[] newPositions = new Vector3[currentLine.positionCount + 1];
+                for (int i = 0; i < currentLine.positionCount; i++)
+                    newPositions[i] = currentLine.GetPosition(i);
+
+                newPositions[currentLine.positionCount] = hit.point;
+
+                currentLine.positionCount++;
+
+                currentLine.SetPositions(newPositions);
+
+                canDraw = false;
+            }
+        }
+        else if (drawing)
+            StopDraw();
+
     }
 
     private void StopDraw(){
