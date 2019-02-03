@@ -14,8 +14,6 @@ public class AndroidPermissionsUsageExample : MonoBehaviour
 
     private void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
-            OnGrantButtonPress();
     }
 
     // Function to be called first (by UI button)
@@ -28,6 +26,9 @@ public class AndroidPermissionsUsageExample : MonoBehaviour
 
             // Your code to show in-game pop-up with the explanation why you need this permission (required for Google Featuring program)
             // This pop-up should include a button "Grant Access" linked to the function "OnGrantButtonPress" below
+
+            OnGrantButtonPress();
+
             return;
         }
         updateText.text = "Permission Granted!";
