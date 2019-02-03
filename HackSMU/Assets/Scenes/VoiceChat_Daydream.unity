@@ -317,6 +317,50 @@ GameObject:
   m_PrefabParentObject: {fileID: 555767533, guid: 34c21f523e72f45509a4e37ed0293c3b,
     type: 2}
   m_PrefabInternal: {fileID: 718159397}
+--- !u!1 &756403102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 756403103}
+  - component: {fileID: 756403104}
+  m_Layer: 0
+  m_Name: ApplicationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &756403103
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 756403102}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &756403104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 756403102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ce76b78583542ec985e07758889e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  device: 1
+  ovrLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &841090721
 Prefab:
   m_ObjectHideFlags: 0
@@ -712,11 +756,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4767791106324012, guid: 8639a23b4540c450b818dab33efaf1fa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4767791106324012, guid: 8639a23b4540c450b818dab33efaf1fa, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.83
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4767791106324012, guid: 8639a23b4540c450b818dab33efaf1fa, type: 2}
       propertyPath: m_LocalRotation.x
@@ -902,7 +946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01b6be81967d44fa9e445b8bd27171e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateText: {fileID: 1881637433}
 --- !u!4 &1767392323
 Transform:
   m_ObjectHideFlags: 0
@@ -1012,7 +1055,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2016183316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1491415045}
@@ -1037,7 +1080,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4473225000192100, guid: fdf292db0e8da44f9a206f2932bf5a16, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4473225000192100, guid: fdf292db0e8da44f9a206f2932bf5a16, type: 2}
       propertyPath: m_LocalRotation.x

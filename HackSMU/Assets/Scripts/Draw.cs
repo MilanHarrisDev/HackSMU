@@ -58,6 +58,9 @@ public class Draw : MonoBehaviour
             case Device.DAYDREAM:
                 drawPressed = GvrControllerInput.GetDevice(GvrControllerHand.Right).GetButton(GvrControllerButton.TouchPadButton);
                 break;
+            case Device.OCULUS_GO:
+                drawPressed = OVRInput.Get(OVRInput.Button.PrimaryHandTrigger);
+                break;
         }
 
         if (drawPressed)
@@ -86,13 +89,17 @@ public class Draw : MonoBehaviour
                     raycast = false;
                 else if (GvrPointerInputModule.CurrentRaycastResult.gameObject.layer == LayerMask.NameToLayer("Drawing"))
                     raycast = true;
-                else
-                    raycast = false;
 
                 hit.point = GvrPointerInputModule.CurrentRaycastResult.worldPosition;
                 break;
             case Device.OCULUS_GO:
+                if (ApplicationManager.manager.OvrHit.collider == null)
+                    raycast = false;
+                else if (ApplicationManager.manager.OvrHit.transform.gameObject.layer == LayerMask.NameToLayer("Drawing"))
+                    raycast = true;
 
+
+                hit.point = ApplicationManager.manager.OvrHit.point;
                 break;
         }
 
